@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #242424;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: white;
+  font-family: sans-serif;
+}
+
+.magic-eight-ball {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at 100px 100px, #444, #000);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  cursor: pointer;
+  margin: 20px 0;
+  transition: transform 0.1s;
+}
+
+.window {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle at 75px 75px, #1a1a1a, #000);
+  border-radius: 50%;
+  border: 4px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+    border-radius: 50%;
+}
+
+.answer {
+  color: #3b82f6;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px;
+  text-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  z-index: 1;
+}
+
+.shake {
+  animation: shake-animation 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake-animation {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.instruction {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
