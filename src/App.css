@@ -67,7 +67,13 @@ body {
   font-size: 1.2rem;
   padding: 10px;
   z-index: 1;
-  transition: color 0.3s;
+  opacity: 1;
+  transition: color 0.3s, opacity 1.5s ease-in;
+}
+
+.shake .answer {
+  opacity: 0;
+  transition: none;
 }
 
 .answer.neutral {
@@ -86,14 +92,21 @@ body {
 }
 
 .shake {
-  animation: shake-animation 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shake-animation 1s cubic-bezier(.36,.07,.19,.97) both;
 }
 
 @keyframes shake-animation {
-  10%, 90% { transform: translate3d(-1px, 0, 0); }
-  20%, 80% { transform: translate3d(2px, 0, 0); }
-  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-  40%, 60% { transform: translate3d(4px, 0, 0); }
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-10px, -10px) rotate(-5deg); }
+  20% { transform: translate(10px, 10px) rotate(5deg); }
+  30% { transform: translate(-15px, 5px) rotate(-5deg); }
+  40% { transform: translate(15px, -5px) rotate(5deg); }
+  50% { transform: translate(-10px, -15px) rotate(-5deg); }
+  60% { transform: translate(10px, 15px) rotate(5deg); }
+  70% { transform: translate(-5px, 10px) rotate(-5deg); }
+  80% { transform: translate(5px, -10px) rotate(5deg); }
+  90% { transform: translate(-2px, 2px) rotate(-2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 .instruction {
