@@ -2,22 +2,39 @@ import { useState } from 'react'
 import './App.css'
 
 const responses = [
-  "It is certain.", "It is decidedly so.", "Without a doubt.", "Yes definitely.",
-  "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.",
-  "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.",
-  "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.",
-  "Don't count on it.", "My reply is no.", "My sources say no.",
-  "Outlook not so good.", "Very doubtful."
+  // Positive (Green)
+  { text: "It is certain.", type: "positive" },
+  { text: "It is decidedly so.", type: "positive" },
+  { text: "Without a doubt.", type: "positive" },
+  { text: "Yes definitely.", type: "positive" },
+  { text: "You may rely on it.", type: "positive" },
+  { text: "As I see it, yes.", type: "positive" },
+  { text: "Most likely.", type: "positive" },
+  { text: "Outlook good.", type: "positive" },
+  { text: "Yes.", type: "positive" },
+  { text: "Signs point to yes.", type: "positive" },
+  // Neutral (Blue)
+  { text: "Reply hazy, try again.", type: "neutral" },
+  { text: "Ask again later.", type: "neutral" },
+  { text: "Better not tell you now.", type: "neutral" },
+  { text: "Cannot predict now.", type: "neutral" },
+  { text: "Concentrate and ask again.", type: "neutral" },
+  // Negative (Red)
+  { text: "Don't count on it.", type: "negative" },
+  { text: "My reply is no.", type: "negative" },
+  { text: "My sources say no.", type: "negative" },
+  { text: "Outlook not so good.", type: "negative" },
+  { text: "Very doubtful.", type: "negative" }
 ]
 
 function App() {
-  const [answer, setAnswer] = useState("Click to ask...")
+  const [answer, setAnswer] = useState({ text: "Click to ask...", type: "neutral" })
   const [isShaking, setIsShaking] = useState(false)
 
   const askQuestion = () => {
     if (isShaking) return;
     setIsShaking(true);
-    setAnswer("");
+    setAnswer({ text: "", type: "neutral" });
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * responses.length);
       setAnswer(responses[randomIndex]);
@@ -30,7 +47,7 @@ function App() {
       <h1>Magic 8 Ball</h1>
       <div className={`magic-eight-ball ${isShaking ? 'shake' : ''}`} onClick={askQuestion}>
         <div className="window">
-          <div className="answer">{answer}</div>
+          <div className={`answer ${answer.type}`}>{answer.text}</div>
         </div>
       </div>
       <p className="instruction">Click the 8-ball for an answer.</p>
